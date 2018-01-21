@@ -1,16 +1,13 @@
 from django.urls import path, include
-from rest_framework import routers
-from gps.views import UserViewSet, CoordinateviewSet
+from django.views.generic import TemplateView
+from gps.views import CoordinateviewSet
 
-
-router = routers.DefaultRouter()
-router.register(r'users', UserViewSet)
-router.register(r'history', CoordinateviewSet)
 
 urlpatterns = [
     path('api-auth/', include(
         'rest_framework.urls',
         namespace='rest_framework'
     )),
-    path('', include(router.urls)),
+    path('', CoordinateviewSet.as_view(), name='gps_create_list'),
+    path('track/', TemplateView.as_view(template_name="index.html"), name='track')
 ]
