@@ -1,0 +1,36 @@
+{% block title %}MainPage{% endblock %}
+<h1>Sexy design award winner for the years 1851, 1852, 1855 in row!</h1>
+
+{% block content %}
+<h2>Sending location</h2>
+<script>
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(sendPosition);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    };
+    function sendPosition(position) {
+        coordinates = {
+            "latitude":position.coords.latitude,
+            "longitude":position.coords.longitude
+        }
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "{% url 'gps_create_list' %}", true);
+        xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+
+        // send the collected data as JSON
+        xhr.send(JSON.stringify(coordinates));
+        console.log(coordinates)
+    };
+    function timeout() {
+        setTimeout(function () {
+            getLocation(sendPosition)
+            timeout();
+        }, 2000);
+    }
+    timeout()
+    
+</script>
+{% endblock %}
