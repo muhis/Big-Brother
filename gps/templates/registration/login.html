@@ -1,0 +1,9 @@
+{% block title %}Login{% endblock %}
+<h1>Sexy design award winner for the years 1851, 1852, 1855 in row!</h1>
+{% block content %}
+<h2>Login</h2>
+<form method="post">
+    {% csrf_token %} {{ form.as_p }}
+    <button type="submit">Login</button>
+</form>
+{% endblock %}
