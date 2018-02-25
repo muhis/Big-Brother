@@ -17,7 +17,7 @@
             "longitude":position.coords.longitude
         }
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "{% url 'gps_create_list' %}", true);
+        xhr.open("POST", "{% url 'add_point' %}", true);
         xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
 
         // send the collected data as JSON
